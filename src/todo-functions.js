@@ -17,7 +17,7 @@ export function getTodoProperties() {  //gets the properties inputed by the user
     return {todoTitle, todoDescription, todoDue, todoPriority};
 }
 
-export function addTodo(title, description, dueDate, priority) {  //adds new todo to totos array.
+export function addTodo(title, description, dueDate, priority) {  //adds new todo to todos array.
     todos.push(new Todo(title, description, dueDate, priority));
 }
 
