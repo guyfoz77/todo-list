@@ -2,8 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-    border: solid burlywood;
 }
 html,
 body {
@@ -18,11 +16,13 @@ body {
 }
     form {
         width: 20%;
+        border: solid black;
     }
 
 
     .todosContainer {
         width: 40%;
+        border: solid black;
     }
      .todoCard {
         height: 50px;
