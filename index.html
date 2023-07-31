@@ -8,6 +8,35 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="container">
+        <form action="" method="post" class="newTodo">
+            <ul>
+                <li>
+                    <label for="todoTitle">Todo:</label>
+                    <input type="text" name="todoTitle" id="todoTitle">
+                </li>
+                <li>
+                    <label for="description">Description:</label>
+                    <input type="text" name="description" id="description">
+                </li>
+                <li>
+                    <label for="dueDate">Due:</label>
+                    <input type="date" name="dueDate" id="dueDate">
+                </li>
+                <li>
+                    <label for="priority">Priority</label>
+                    <select name="priority" id="priority">
+                        <option value="Low">Low</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </li>
+            </ul>
+            <input type="button" value="Add">
+        </form>
+        <div class="todosContainer">
+            <div class="todoCard"></div>
+        </div>
+    </div>
 </body>
 </html>
