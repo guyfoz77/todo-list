@@ -21,3 +21,10 @@ export function addTodo(title, description, dueDate, priority) {  //adds new tod
     todos.push(new Todo(title, description, dueDate, priority));
 }
 
+export function deleteTodo(index) {
+    todos.splice(index, 1);
+}
+
+export function editTodo(property, index, newValue) {
+    todos[index][property] = newValue; //todos[index].property
+}
