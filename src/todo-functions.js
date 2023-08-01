@@ -7,7 +7,7 @@ class Todo {
     }
 }
 
-export let todos = [new Todo('Get kitchen cleaner', '', 'tomorrow', 'high')];   //storage of the todos
+export let todos = [new Todo('title', 'description', '', 'high')];   //storage of the todos
 
 export function getTodoProperties() {  //gets the properties inputed by the user in the DOM
     const todoTitle = document.querySelector('#todoTitle').value;

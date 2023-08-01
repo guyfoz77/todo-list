@@ -20,8 +20,7 @@ function elementBuilder(element, classList, textContent, dataName) {  //element 
 
 function todoBuilder(title, description, dueDate, priority, dataValue) {   //builds a todo card
     function onBlurEventListener(e) {
-        editTodo(e.target.dataset.element, e.target.parentNode.dataset.index, e.target.value);
-        console.log(todos);
+        editTodo(e.target.dataset.element, e.target.parentNode.parentNode.dataset.index, e.target.value);
     }
 
     const todoCard = elementBuilder('div', 'todoCard', '', '', '');
@@ -38,13 +37,21 @@ function todoBuilder(title, description, dueDate, priority, dataValue) {   //bui
         todoPriority.setHTML('<option value="Low">Low</option><option value="Medium">Medium</option><option value="High">High</option>');
         todoPriority.addEventListener('blur', (e) => onBlurEventListener(e));
     const todoDelete = elementBuilder('button', 'delete', 'Delete', '');
+
+    const todoTopRow = elementBuilder('div', 'todoTop', '', '');
+        todoTopRow.append(todoTitle, todoDueDate)
+    const todoBottomRight = elementBuilder('div', 'todoBottomRight', '', '');
+        todoBottomRight.append(todoPriority, todoDelete);
+    const todoBottomRow = elementBuilder('div', 'todoBottom', '', '');
+        todoBottomRow.append(todoDescription)
+
     
     todoDelete.addEventListener('click', (e) => { //deletes the todo from todo array then repopulates todo list.
-        deleteTodo(e.target.parentNode.dataset.index);
+        deleteTodo(e.target.parentNode.parentNode.dataset.index);
         todosContainerUpdater(todos);
     })
 
-    todoCard.append(todoTitle, todoDescription, todoDueDate, todoPriority, todoDelete);
+    todoCard.append(todoTopRow, todoBottomRow, todoBottomRight);
     return todoCard;
 }
 

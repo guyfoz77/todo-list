@@ -25,6 +25,43 @@ body {
         border: solid black;
     }
      .todoCard {
-        height: 50px;
+        height: 75px;
         background-color: aquamarine;
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+        grid-template-rows: 1fr 2fr;
      }
+     .todoTitle,
+     .todoDueDate,
+     .todoDescription,
+     .todoPriority {
+        background-color: transparent;
+        border: none;
+     }
+
+        .todoTop {
+            display: flex;
+            grid-column: 1 / span 2;
+        }
+            .todoTitle {
+                flex: 1;
+            }
+            .todoDueDate {
+                
+            }
+        .todoBottom {
+            grid-row: 2;
+            display: flex;
+        }
+            .todoDescription{
+                flex: 1;
+            }
+        .todoBottomRight {
+            grid-column: 2;
+            grid-row: 2;
+            display: flex;
+            flex-direction: column;
+        }
+            .delete {
+                flex: 1;
+            }

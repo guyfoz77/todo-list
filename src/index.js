@@ -10,3 +10,5 @@ input.addEventListener('click', () => {
     todosContainerUpdater(todos);
     form.reset();
 })
+
+todosContainerUpdater(todos);
