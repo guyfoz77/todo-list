@@ -19,18 +19,24 @@ function elementBuilder(element, classList, textContent, dataName) {  //element 
 }
 
 function todoBuilder(title, description, dueDate, priority, dataValue) {   //builds a todo card
+    function onBlurEventListener(e) {
+        editTodo(e.target.dataset.element, e.target.parentNode.dataset.index, e.target.value);
+        console.log(todos);
+    }
+
     const todoCard = elementBuilder('div', 'todoCard', '', '', '');
         todoCard.dataset.index = dataValue; //datavalue corresponds to the todo's index in the container array.
     //main elements
     const todoTitle = elementBuilder('input', 'todoTitle', title, 'title');
-        todoTitle.addEventListener('blur', (e) => {
-            console.log(e.target.parentNode.dataset.index);
-        })
+        todoTitle.addEventListener('blur', (e) => onBlurEventListener(e));
     const todoDescription = elementBuilder('input', 'todoDescription', description, 'description');
+        todoDescription.addEventListener('blur', (e) => onBlurEventListener(e));
     const todoDueDate = elementBuilder('input', 'todoDueDate', dueDate, 'dueDate');
         todoDueDate.type = 'date';
+        todoDueDate.addEventListener('blur', (e) => onBlurEventListener(e));
     const todoPriority = elementBuilder('select', [priority, 'todoPriority'], `${priority} priority`, 'priority');
         todoPriority.setHTML('<option value="Low">Low</option><option value="Medium">Medium</option><option value="High">High</option>');
+        todoPriority.addEventListener('blur', (e) => onBlurEventListener(e));
     const todoDelete = elementBuilder('button', 'delete', 'Delete', '');
     
     todoDelete.addEventListener('click', (e) => { //deletes the todo from todo array then repopulates todo list.
