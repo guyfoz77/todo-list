@@ -1,7 +1,8 @@
-class project {
-    constructor(projectName) {
-        this.projectName = projectName;
-        this.todos = []
-    }
-    
+export let projects = []
+
+export function addNewProject(name) {
+    projects.push({
+        name: name,
+        todos: []
+    })
 }
