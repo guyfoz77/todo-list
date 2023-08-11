@@ -26,3 +26,18 @@ export function projectCardBuilder(name) {
     let projectCard = elementBuilder('div', 'projectCard', name, '');
     return projectCard;
 }
+
+export function todoCardBuilder(title, id, dueDate = 'No due date') { //id will be the position of the todo in the storage array.
+    let todoCard = elementBuilder('div', 'todoCard', '', id);
+    let complete = elementBuilder('div', 'complete', '', '');
+        complete.addEventListener('click', () => {
+            todoCard.classList.add('complete');
+        })
+    let todoTitle = elementBuilder('h2', '', title, '');
+    let todoDueDate = elementBuilder('h3', '', dueDate, '');
+        todoDueDate.addEventListener('click', (e) => {
+            //code here to load a date picker which can allow the user to edit the date on the todo.
+        })
+    todoCard.append(complete, todoTitle, todoDueDate);
+    return todoCard;
+}
