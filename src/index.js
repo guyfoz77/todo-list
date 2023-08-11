@@ -1,17 +1,19 @@
 import { projects, addNewProject } from "./projectManager";
-import { projectCardBuilder, clearElement } from "./domController";
+import { projectCardBuilder, todoCardBuilder, clearElement } from "./domController";
+import { pageLoader } from "./pageLoader";
 
 const newProjectButton = document.querySelector('.newProjectButton');
 const projectInput = document.querySelector('.newProjectInput');
 const projectList = document.querySelector('.projectList');
 
-newProjectButton.addEventListener('click', e => {
+newProjectButton.addEventListener('click', e => { //will need to rework this to add to storage array rather than directly to DOM
     e.preventDefault();
     if (projectInput.value == '' || null) return;
     clearElement(projectList);
     addNewProject(projectInput.value);
-    projects.forEach(project => {
-        projectList.append(projectCardBuilder(project.name))
-    });
+    pageLoader();
     projectInput.value = '';
+    console.log(projects);
 })
+
+pageLoader();
