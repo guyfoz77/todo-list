@@ -1,3 +1,4 @@
+const todoContainer = document.querySelector('.todoContainer');
 
 export function clearElement(element) {
     while (element.firstChild) {
@@ -5,7 +6,7 @@ export function clearElement(element) {
     }
 }
 
-function elementBuilder(element, classList, textContent, dataName) {  //element builder copied and modified from previous project.
+export function elementBuilder(element, classList, textContent, dataName) {  //element builder copied and modified from previous project.
     const xelement = document.createElement(element);
     if (classList != '') {
         if (typeof classList == 'object') {
@@ -22,14 +23,14 @@ function elementBuilder(element, classList, textContent, dataName) {  //element 
     return xelement;
 }
 
-export function projectCardBuilder(name) {
-    let projectCard = elementBuilder('div', 'projectCard', name, '');
+export function projectCardBuilder(name, id) {
+    let projectCard = elementBuilder('div', 'projectCard', name, id);
     return projectCard;
 }
 
 export function todoCardBuilder(title, id, dueDate = 'No due date') { //id will be the position of the todo in the storage array.
     let todoCard = elementBuilder('div', 'todoCard', '', id);
-    let complete = elementBuilder('div', 'complete', '', '');
+    let complete = elementBuilder('div', 'completeButton', '', '');
         complete.addEventListener('click', () => {
             todoCard.classList.add('complete');
         })

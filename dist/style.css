@@ -19,3 +19,10 @@ main {
     grid-template-columns: 1fr 2fr;
     flex: 1;
 }
+
+.completeButton {
+    border: solid black;
+    height: 15px;
+    width: 15px;
+    border-radius: 10px;
+}

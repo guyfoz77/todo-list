@@ -1,6 +1,6 @@
 import { projects, addNewProject } from "./projectManager";
-import { projectCardBuilder, todoCardBuilder, clearElement } from "./domController";
-import { pageLoader } from "./pageLoader";
+import { clearElement } from "./domController";
+import { pageLoader, todoListBuilder } from "./pageLoader";
 
 const newProjectButton = document.querySelector('.newProjectButton');
 const projectInput = document.querySelector('.newProjectInput');
@@ -17,3 +17,4 @@ newProjectButton.addEventListener('click', e => { //will need to rework this to 
 })
 
 pageLoader();
+todoListBuilder(0);
