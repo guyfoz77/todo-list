@@ -26,3 +26,6 @@ main {
     width: 15px;
     border-radius: 10px;
 }
+.hide {
+    display: none;
+}
