@@ -7,7 +7,9 @@ const todoContainer = document.querySelector('.todoContainer');
 function projectListBuilder() {
     clearElement(projectListContainer);
     for (let i = 0; i < projects.length; i++) {
-        projectListContainer.append(projectCardBuilder(projects[i].name, i));
+        let newProjectCard = projectCardBuilder(projects[i].name);
+        newProjectCard.dataset.projectID = i;
+        projectListContainer.append(newProjectCard);
     }
 }
 
@@ -15,7 +17,9 @@ function projectListBuilder() {
 export function todoListBuilder(activeProjectIndex) {
     clearElement(todoContainer);
     for (let i = 0; i < projects[activeProjectIndex].todos.length; i++) {
-        let newTodoCard = todoCardBuilder(projects[activeProjectIndex].todos[i].title, i, projects[activeProjectIndex].todos.dueDate);
+        let newTodoCard = todoCardBuilder(projects[activeProjectIndex].todos[i].title, projects[activeProjectIndex].todos.dueDate);
+        newTodoCard.dataset.projectID = activeProjectIndex;
+        newTodoCard.dataset.todoID = i;
         todoContainer.append(newTodoCard);
     }
 }

@@ -30,7 +30,7 @@ export function projectCardBuilder(name) {
     return projectCard;
 }
 
-export function todoCardBuilder(title, , dueDate = 'No due date') { 
+export function todoCardBuilder(title, dueDate = 'No due date') { 
     let todoCard = elementBuilder('div', 'todoCard', '', '');
     let complete = elementBuilder('div', 'completeButton', '', '');
         complete.addEventListener('click', () => {
