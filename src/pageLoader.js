@@ -15,7 +15,7 @@ function projectListBuilder() {
 export function todoListBuilder(activeProjectIndex) {
     clearElement(todoContainer);
     for (let i = 0; i < projects[activeProjectIndex].todos.length; i++) {
-        let newTodoCard = todoCardBuilder(projects[activeProjectIndex].todos.title, i, projects[activeProjectIndex].todos.dueDate);
+        let newTodoCard = todoCardBuilder(projects[activeProjectIndex].todos[i].title, i, projects[activeProjectIndex].todos.dueDate);
         todoContainer.append(newTodoCard);
     }
 }

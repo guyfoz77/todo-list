@@ -1,3 +1,5 @@
+import { projects } from "./projectManager";
+
 const todoContainer = document.querySelector('.todoContainer');
 
 export function clearElement(element) {
@@ -23,22 +25,32 @@ export function elementBuilder(element, classList, textContent, dataName) {  //e
     return xelement;
 }
 
-export function projectCardBuilder(name, id) {
-    let projectCard = elementBuilder('div', 'projectCard', name, id);
+export function projectCardBuilder(name) {
+    let projectCard = elementBuilder('div', 'projectCard', name, '');
     return projectCard;
 }
 
-export function todoCardBuilder(title, id, dueDate = 'No due date') { //id will be the position of the todo in the storage array.
-    let todoCard = elementBuilder('div', 'todoCard', '', id);
+export function todoCardBuilder(title, , dueDate = 'No due date') { 
+    let todoCard = elementBuilder('div', 'todoCard', '', '');
     let complete = elementBuilder('div', 'completeButton', '', '');
         complete.addEventListener('click', () => {
             todoCard.classList.add('complete');
         })
     let todoTitle = elementBuilder('h2', '', title, '');
+    let todoDateHolder = elementBuilder('div', 'dateHolder', '', '');
     let todoDueDate = elementBuilder('h3', '', dueDate, '');
-        todoDueDate.addEventListener('click', (e) => {
-            //code here to load a date picker which can allow the user to edit the date on the todo.
+    todoDateHolder.append(todoDueDate);
+    let todoDueDatePicker = elementBuilder('input', '', '', '');
+        todoDueDatePicker.setAttribute("type", "date");
+        todoDueDatePicker.value = dueDate
+            todoDueDatePicker.addEventListener('blur', () => {
+                // projects[].todos[id] //how to identify which project to modify??
+            })
+        todoDueDate.addEventListener('click', () => {
+            todoDateHolder.removeChild(todoDateHolder.firstChild);
+            todoDateHolder.append(todoDueDatePicker);
+            todoDueDatePicker.focus();
         })
-    todoCard.append(complete, todoTitle, todoDueDate);
+    todoCard.append(complete, todoTitle, todoDateHolder);
     return todoCard;
 }
