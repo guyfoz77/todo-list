@@ -1,10 +1,15 @@
 export let projects = [];
 
 function projectBuilder(name, projectIndex) { //factory function to build new project object.
+    let todos = [];
+    function todoDateEditor(todoIndex, newDate) {
+        this.todos[todoIndex].dueDate = newDate;
+    }
     return {
         name: name,
         projectIndex: projectIndex,
-        todos: []
+        todos: todos,
+        todoDateEditor: todoDateEditor
     }
 }
 function todoBuilder(title, projectIndex, todoIndex, dueDate = 'No due date.') { //projectIndex refers to the position of the parent project in the array of projects.
@@ -21,6 +26,7 @@ export function projectDeleter(projectIndex) {
 export function todoDeleter(projectIndex, todoIndex) {
     projects[projectIndex].todos.splice(todoIndex, 1);
 }
+// export function todoDateEditor
 
 export function addNewProject(name, projectIndex) {
     projects.push(projectBuilder(name, projectIndex));

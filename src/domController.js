@@ -43,8 +43,14 @@ export function todoCardBuilder(title, dueDate = 'No due date') {
     let todoDueDatePicker = elementBuilder('input', '', '', '');
         todoDueDatePicker.setAttribute("type", "date");
         todoDueDatePicker.value = dueDate
-            todoDueDatePicker.addEventListener('blur', () => {
-                // projects[].todos[id] //how to identify which project to modify??
+            todoDueDatePicker.addEventListener('blur', (e) => {
+                const projectID = e.target.parentNode.parentNode.dataset.projectID;
+                const todoID = e.target.parentNode.parentNode.dataset.todoID;
+                let newDueDate = todoDueDatePicker.value;
+                projects[projectID].todoDateEditor(todoID, newDueDate);
+                if (newDueDate != '') todoDueDate.textContent = `Due ${newDueDate}`;
+                todoDateHolder.removeChild(todoDateHolder.firstChild);
+                todoDateHolder.append(todoDueDate);
             })
         todoDueDate.addEventListener('click', () => {
             todoDateHolder.removeChild(todoDateHolder.firstChild);
