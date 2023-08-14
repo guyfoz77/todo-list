@@ -1,26 +1,36 @@
+import { projects } from "./projectStorage";
+
 export class Project {
-    static projects = [];
     constructor(name, projectIndex) {
         this.name = name;
         this.projectIndex = projectIndex;
         this.todos = [];
     }
-    todoDateEditor(todoIndex, newDate) {
-        this.todos[todoIndex].dueDate = newDate;
-    }
-    todoDeleter(todoIndex) {
-        this.todos.splice(todoIndex, 1);
-    }
-    static addNewTodo(title, projectIndex, dueDate = 'No due date.') {
+
+    static addNewTodo(title, projectIndex, todoIndex, dueDate = 'No due date.') {
         const todo = {
             title: title,
             projectIndex: projectIndex,
-            // todoIndex: todoIndex,
+            todoIndex: todoIndex,
             completed: false,
             dueDate: dueDate
         }
-        this.projects[projectIndex].todos.push(todo);
+        projects[projectIndex].todos.push(todo);
     }
+
+    static projectDeleter(projectIndex) {
+        projects.splice(projectIndex, 1);
+    }
+
+    todoDateEditor(todoIndex, newDate) {
+        this.todos[todoIndex].dueDate = newDate;
+    }
+
+    todoDeleter(todoIndex) {
+        this.todos.splice(todoIndex, 1);
+    }
+    
+    
 
 }
 
@@ -49,12 +59,12 @@ export class Project {
 //         dueDate: dueDate
 //     }
 // }
-export function projectDeleter(projectIndex) {
-    Project.projects.splice(projectIndex, 1);
-}
+// export function projectDeleter(projectIndex) {
+//     Project.projects.splice(projectIndex, 1);
+// }
 
 export function addNewProject(name, projectIndex) {
-    Project.projects.push(new Project(name, projectIndex));
+    projects.push(new Project(name, projectIndex));
 }
 // export function addNewTodo(title, projectIndex, todoIndex, dueDate = 'No due date.') {
 //     Project.projects[projectIndex].todos.push(todoBuilder(title, projectIndex, todoIndex, dueDate));

@@ -18,11 +18,11 @@ newProjectButton.addEventListener('click', e => { //will need to rework this to 
 })
 
 addNewProject('test project', 0);
-Project.addNewTodo('Test todo', 0);
-Project.addNewTodo('another test todo', 0);
+Project.addNewTodo('Test todo', 0, 0);
+Project.addNewTodo('another test todo', 0, 1);
 addNewProject('second test project', 1);
-Project.addNewTodo('second test todo', 1);
-Project.addNewTodo('Yet another thing to do', 1);
+Project.addNewTodo('second test todo', 1, 0);
+Project.addNewTodo('Yet another thing to do', 1, 1);
 console.log(Project.projects);
 
 
