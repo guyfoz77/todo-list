@@ -7,11 +7,11 @@ export class Project {
         this.todos = [];
     }
 
-    static addNewTodo(title, projectIndex, todoIndex, dueDate = 'No due date.') {
+    static addNewTodo(title, projectIndex, dueDate = '') {
         const todo = {
             title: title,
             projectIndex: projectIndex,
-            todoIndex: todoIndex,
+            // todoIndex: todoIndex,
             completed: false,
             dueDate: dueDate
         }
