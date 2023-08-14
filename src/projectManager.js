@@ -22,6 +22,10 @@ export class Project {
         projects.splice(projectIndex, 1);
     }
 
+    static addNewProject(name, projectIndex) {
+        projects.push(new Project(name, projectIndex));
+    }
+
     todoDateEditor(todoIndex, newDate) {
         this.todos[todoIndex].dueDate = newDate;
     }
@@ -29,9 +33,6 @@ export class Project {
     todoDeleter(todoIndex) {
         this.todos.splice(todoIndex, 1);
     }
-    
-    
-
 }
 
 // function projectBuilder(name, projectIndex) { //factory function to build new project object.
@@ -63,9 +64,9 @@ export class Project {
 //     Project.projects.splice(projectIndex, 1);
 // }
 
-export function addNewProject(name, projectIndex) {
-    projects.push(new Project(name, projectIndex));
-}
+// export function addNewProject(name, projectIndex) {
+//     projects.push(new Project(name, projectIndex));
+// }
 // export function addNewTodo(title, projectIndex, todoIndex, dueDate = 'No due date.') {
 //     Project.projects[projectIndex].todos.push(todoBuilder(title, projectIndex, todoIndex, dueDate));
 // }

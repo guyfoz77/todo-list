@@ -1,6 +1,7 @@
 import { Project, addNewProject, addNewTodo } from "./projectManager";
 import { clearElement } from "./domController";
 import { pageLoader, todoListBuilder } from "./pageLoader";
+import { projects } from "./projectStorage";
 
 const newProjectButton = document.querySelector('.newProjectButton');
 const projectInput = document.querySelector('.newProjectInput');
@@ -17,13 +18,13 @@ newProjectButton.addEventListener('click', e => { //will need to rework this to 
     projectInput.value = '';
 })
 
-addNewProject('test project', 0);
+Project.addNewProject('test project', 0);
 Project.addNewTodo('Test todo', 0, 0);
 Project.addNewTodo('another test todo', 0, 1);
-addNewProject('second test project', 1);
+Project.addNewProject('second test project', 1);
 Project.addNewTodo('second test todo', 1, 0);
 Project.addNewTodo('Yet another thing to do', 1, 1);
-console.log(Project.projects);
+console.log(projects);
 
 
 todoListBuilder(0);
