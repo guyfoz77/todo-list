@@ -1,4 +1,4 @@
-import { projects, addNewProject, addNewTodo } from "./projectManager";
+import { Project, addNewProject, addNewTodo } from "./projectManager";
 import { clearElement } from "./domController";
 import { pageLoader, todoListBuilder } from "./pageLoader";
 
@@ -15,16 +15,15 @@ newProjectButton.addEventListener('click', e => { //will need to rework this to 
     addNewProject(projectInput.value);
     pageLoader();
     projectInput.value = '';
-    console.log(projects);
 })
 
 addNewProject('test project', 0);
-addNewTodo('Test todo', 0, 0);
-addNewTodo('another test todo', 0, 1);
+Project.addNewTodo('Test todo', 0);
+Project.addNewTodo('another test todo', 0);
 addNewProject('second test project', 1);
-addNewTodo('second test todo', 1, 0);
-addNewTodo('Yet another thing to do', 1, 1);
-console.log(projects);
+Project.addNewTodo('second test todo', 1);
+Project.addNewTodo('Yet another thing to do', 1);
+console.log(Project.projects);
 
 
 todoListBuilder(0);

@@ -1,4 +1,4 @@
-import { projects } from "./projectManager";
+import { Projects } from "./projectManager";
 
 const todoContainer = document.querySelector('.todoContainer');
 
@@ -47,7 +47,7 @@ export function todoCardBuilder(title, dueDate = 'No due date') {
                 const projectID = e.target.parentNode.parentNode.dataset.projectID;
                 const todoID = e.target.parentNode.parentNode.dataset.todoID;
                 let newDueDate = todoDueDatePicker.value;
-                projects[projectID].todoDateEditor(todoID, newDueDate);
+                Projects.projects[projectID].todoDateEditor(todoID, newDueDate);
                 if (newDueDate != '') todoDueDate.textContent = `Due ${newDueDate}`;
                 todoDateHolder.removeChild(todoDateHolder.firstChild);
                 todoDateHolder.append(todoDueDate);
