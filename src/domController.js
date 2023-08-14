@@ -1,5 +1,11 @@
 import { Projects } from "./projectManager";
+import { projects } from "./projectStorage";
 
+let activeProjectIndex = 0;
+const projectListContainer = document.querySelector('.projectList');
+const newProjectButton = document.querySelector('.newProjectButton');
+const projectInput = document.querySelector('.newProjectInput');
+const projectList = document.querySelector('.projectList');
 const todoContainer = document.querySelector('.todoContainer');
 
 export function clearElement(element) {
@@ -7,6 +13,15 @@ export function clearElement(element) {
         element.removeChild(element.firstChild);
     }
 }
+
+newProjectButton.addEventListener('click', e => { //will need to rework this to add to storage array rather than directly to DOM
+    e.preventDefault();
+    if (projectInput.value == '' || null) return;
+    clearElement(projectList);
+    Project.addNewProject(projectInput.value);
+    pageLoader();
+    projectInput.value = '';
+})
 
 export function elementBuilder(element, classList, textContent, dataName) {  //element builder copied and modified from previous project.
     const xelement = document.createElement(element);
@@ -25,9 +40,37 @@ export function elementBuilder(element, classList, textContent, dataName) {  //e
     return xelement;
 }
 
-export function projectCardBuilder(name) {
+function projectCardBuilder(name) {
     let projectCard = elementBuilder('div', 'projectCard', name, '');
+    projectCard.addEventListener('click', e => {
+        console.log('click');
+        activeProjectSwitcher(e.target.dataset.projectID);
+    })
     return projectCard;
+}
+
+export function projectListBuilder() {
+    clearElement(projectListContainer);
+    for (let i = 0; i < projects.length; i++) {
+        let newProjectCard = projectCardBuilder(projects[i].name);
+        newProjectCard.dataset.projectID = i;
+        projectListContainer.append(newProjectCard);
+    }
+}
+
+function activeProjectSwitcher(newProjectIndex) {
+    activeProjectIndex = newProjectIndex;
+    todoListBuilder(activeProjectIndex);
+}
+
+export function todoListBuilder(activeProjectIndex) {
+    clearElement(todoContainer);
+    for (let i = 0; i < projects[activeProjectIndex].todos.length; i++) {
+        let newTodoCard = todoCardBuilder(projects[activeProjectIndex].todos[i].title, projects[activeProjectIndex].todos.dueDate);
+        newTodoCard.dataset.projectID = activeProjectIndex;
+        newTodoCard.dataset.todoID = i;
+        todoContainer.append(newTodoCard);
+    }
 }
 
 export function todoCardBuilder(title, dueDate = 'No due date') { 
