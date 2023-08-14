@@ -87,21 +87,20 @@ export function todoListBuilder(activeProjectIndex) {
 export function todoCardBuilder(title, dueDate) { 
     let todoCard = elementBuilder('div', 'todoCard', '', '');
     let complete = elementBuilder('div', 'completeButton', '', '');
-        complete.addEventListener('click', () => {
-            todoCard.classList.add('complete');
+        complete.addEventListener('click', (e) => {
+            const todoID = e.target.parentNode.dataset.todoID;
+            todoCard.classList.toggle('complete');
+            if (complete.textContent == '') complete.textContent = 'x'; else complete.textContent = '';
+            Project.markTodoCompleteToggle(todoID);
         })
     let todoTitle = elementBuilder('h2', '', title, '');
     let todoDateHolder = elementBuilder('div', 'dateHolder', '', '');
     let todoDueDate = elementBuilder('h3', '', '', '');
-        if (dueDate == '') {
-            todoDueDate.textContent = 'No due date'
-        } else todoDueDate.textContent = `Due ${dueDate}`;
+        if (dueDate == '') todoDueDate.textContent = 'No due date'; else todoDueDate.textContent = `Due ${dueDate}`;
     todoDateHolder.append(todoDueDate);
     let todoDueDatePicker = elementBuilder('input', '', '', '');
         todoDueDatePicker.setAttribute("type", "date");
-        if (dueDate == '') {
-            todoDueDatePicker.value = ''
-        } else todoDueDatePicker.value = dueDate;
+        if (dueDate == '') todoDueDatePicker.value = ''; else todoDueDatePicker.value = dueDate;
             todoDueDatePicker.addEventListener('blur', (e) => {
                 const projectID = e.target.parentNode.parentNode.dataset.projectID;
                 const todoID = e.target.parentNode.parentNode.dataset.todoID;
