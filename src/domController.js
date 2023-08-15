@@ -97,11 +97,12 @@ export function todoListBuilder(activeProjectIndex) {
 
 export function todoCardBuilder(title, dueDate) { 
     let todoCard = elementBuilder('div', 'todoCard', '', '');
-    let complete = elementBuilder('div', 'completeButton', '', '');
+    let complete = elementBuilder('div', ['completeButton', 'material-symbols-outlined'], '', '');
         complete.addEventListener('click', (e) => {
             const todoID = e.target.parentNode.dataset.todoID;
             todoCard.classList.toggle('complete');
-            if (complete.textContent == '') complete.textContent = 'x'; else complete.textContent = '';
+            complete.classList.toggle('selected');
+            // if (complete.textContent == '') complete.textContent = ''; else complete.textContent = '';
             projects[activeProjectIndex].markTodoCompleteToggle(todoID);
             console.log(projects);
         })
