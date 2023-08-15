@@ -5,6 +5,12 @@
     --light-colour: #ADB5BD;
     --accent-colour: #BCD979;
 }
+
+@keyframes strike {
+    0%   { width : 0; }
+    100% { width: 100%; }
+}
+
 * {
     color: white;
     font-family: var(--mainFont);
@@ -90,11 +96,18 @@ input:focus {
                 }
                 h2 {
                     position: relative;
+                    width: fit-content;
                 }
-                h2::after {
+                .completeButton.selected~h2::after {
                     position: absolute;
                     content: ' ';
-                    border: solid;
+                    border-top: solid var(--dark-colour) 4px;
+                    width: calc(100% + 10px);
+                    left: -5px;
+                    top: 45%;
+                    animation-name: strike;
+                    animation-duration: 0.2s;
+                    animation-timing-function: linear;
                 }
                 h2
                 h3 {
