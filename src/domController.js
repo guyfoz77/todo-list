@@ -19,7 +19,7 @@ newProjectButton.addEventListener('click', e => { //will need to rework this to 
     if (projectInput.value == '' || null) return;
     clearElement(projectList);
     Project.addNewProject(projectInput.value);
-    pageLoader();
+    todoListBuilder(activeProjectIndex);
     projectInput.value = '';
 })
 newTodoButton.addEventListener('click', e => {
@@ -88,14 +88,14 @@ function activeProjectSwitcher(newProjectIndex) {
 export function todoListBuilder(activeProjectIndex) {
     clearElement(todoContainer);
     for (let i = 0; i < projects[activeProjectIndex].todos.length; i++) {
-        let newTodoCard = todoCardBuilder(projects[activeProjectIndex].todos[i].title, projects[activeProjectIndex].todos[i].dueDatem, projects[activeProjectIndex].todos[i].completed);
+        let newTodoCard = todoCardBuilder(projects[activeProjectIndex].todos[i].title, projects[activeProjectIndex].todos[i].completed, projects[activeProjectIndex].todos[i].dueDate);
         newTodoCard.dataset.projectID = activeProjectIndex;
         newTodoCard.dataset.todoID = i;
         todoContainer.append(newTodoCard);
     }
 }
 
-export function todoCardBuilder(title, dueDate, completed) { 
+export function todoCardBuilder(title, completed, dueDate) { 
     let todoCard = elementBuilder('div', 'todoCard', '', '');
     let complete = elementBuilder('div', ['completeButton', 'material-symbols-outlined'], '', '');
         complete.addEventListener('click', (e) => {
