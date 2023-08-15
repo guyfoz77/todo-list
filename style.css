@@ -58,6 +58,12 @@ input:focus {
         padding: 20px;
     }
 
+    .navMenu {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
     .todoContainer {
         display: flex;
         flex-direction: column;
