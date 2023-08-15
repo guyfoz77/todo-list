@@ -88,14 +88,14 @@ function activeProjectSwitcher(newProjectIndex) {
 export function todoListBuilder(activeProjectIndex) {
     clearElement(todoContainer);
     for (let i = 0; i < projects[activeProjectIndex].todos.length; i++) {
-        let newTodoCard = todoCardBuilder(projects[activeProjectIndex].todos[i].title, projects[activeProjectIndex].todos[i].dueDate);
+        let newTodoCard = todoCardBuilder(projects[activeProjectIndex].todos[i].title, projects[activeProjectIndex].todos[i].dueDatem, projects[activeProjectIndex].todos[i].completed);
         newTodoCard.dataset.projectID = activeProjectIndex;
         newTodoCard.dataset.todoID = i;
         todoContainer.append(newTodoCard);
     }
 }
 
-export function todoCardBuilder(title, dueDate) { 
+export function todoCardBuilder(title, dueDate, completed) { 
     let todoCard = elementBuilder('div', 'todoCard', '', '');
     let complete = elementBuilder('div', ['completeButton', 'material-symbols-outlined'], '', '');
         complete.addEventListener('click', (e) => {
@@ -104,8 +104,11 @@ export function todoCardBuilder(title, dueDate) {
             complete.classList.toggle('selected');
             // if (complete.textContent == '') complete.textContent = ''; else complete.textContent = '';
             projects[activeProjectIndex].markTodoCompleteToggle(todoID);
-            console.log(projects);
         })
+        if (completed == true) {
+            todoCard.classList.add('complete');
+            complete.classList.add('selected');
+        }
     let todoTitle = elementBuilder('h2', '', title, '');
     let todoDateHolder = elementBuilder('div', 'dateHolder', '', '');
     let todoDueDate = elementBuilder('h3', '', '', '');
