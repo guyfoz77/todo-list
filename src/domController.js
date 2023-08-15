@@ -21,6 +21,7 @@ newProjectButton.addEventListener('click', e => { //will need to rework this to 
     Project.addNewProject(projectInput.value);
     todoListBuilder(activeProjectIndex);
     projectInput.value = '';
+    projectListBuilder();
 })
 newTodoButton.addEventListener('click', e => {
     e.preventDefault();
@@ -73,15 +74,21 @@ function projectCardBuilder(name) {
 
 export function projectListBuilder() {
     clearElement(projectListContainer);
+    let projectCards = []
     for (let i = 0; i < projects.length; i++) {
         let newProjectCard = projectCardBuilder(projects[i].name);
         newProjectCard.dataset.projectID = i;
-        projectListContainer.append(newProjectCard);
+        projectCards.push(newProjectCard);
     }
+    projectCards[activeProjectIndex].classList.add('activeProject');
+    projectCards.forEach(projectCard => {
+        projectList.append(projectCard);
+    });
 }
 
 function activeProjectSwitcher(newProjectIndex) {
     activeProjectIndex = newProjectIndex;
+    projectListBuilder();
     todoListBuilder(activeProjectIndex);
 }
 
