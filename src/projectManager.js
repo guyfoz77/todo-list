@@ -26,8 +26,8 @@ export class Project {
         projects.push(new Project(name, projectIndex));
     }
 
-    static markTodoCompleteToggle(todoIndex) {
-        projects[todoIndex].completed = !projects[todoIndex].completed;
+    markTodoCompleteToggle(todoIndex) {
+        this.todos[todoIndex].completed = !this.todos[todoIndex].completed;
     }
 
     todoDateEditor(todoIndex, newDate) {

@@ -3,6 +3,7 @@ import { projects } from "./projectStorage";
 import { pageLoader } from "./pageLoader";
 
 export let activeProjectIndex = 0;
+
 const projectListContainer = document.querySelector('.projectList');
 const newProjectButton = document.querySelector('.newProjectButton');
     const projectInput = document.querySelector('.newProjectInput');
@@ -11,6 +12,7 @@ const todoContainer = document.querySelector('.todoList');
 const newTodoButton = document.querySelector('.newTodoButton');
     const newTodoInput = document.querySelector('.newTodoInput');
     const newTodoDate = document.querySelector('.newTodoDate');
+const deleteAllCompleteButton = document.querySelector('.deleteComplete');
 
 newProjectButton.addEventListener('click', e => { //will need to rework this to add to storage array rather than directly to DOM
     e.preventDefault();
@@ -26,6 +28,15 @@ newTodoButton.addEventListener('click', e => {
     pageLoader();
     newTodoInput.value = '';
     newTodoDate.value = '';
+})
+deleteAllCompleteButton.addEventListener('click', e => {
+    e.preventDefault();
+    for (let i = projects[activeProjectIndex].todos.length - 1; i >= 0; i--) {
+        if (projects[activeProjectIndex].todos[i].completed == true) {
+            projects[activeProjectIndex].todoDeleter(i);
+        }
+        pageLoader();
+    }
 })
 
 
@@ -91,7 +102,8 @@ export function todoCardBuilder(title, dueDate) {
             const todoID = e.target.parentNode.dataset.todoID;
             todoCard.classList.toggle('complete');
             if (complete.textContent == '') complete.textContent = 'x'; else complete.textContent = '';
-            Project.markTodoCompleteToggle(todoID);
+            projects[activeProjectIndex].markTodoCompleteToggle(todoID);
+            console.log(projects);
         })
     let todoTitle = elementBuilder('h2', '', title, '');
     let todoDateHolder = elementBuilder('div', 'dateHolder', '', '');
