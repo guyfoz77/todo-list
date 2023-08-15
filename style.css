@@ -1,7 +1,11 @@
 :root {
     --mainFont: 'Space Grotesk', sans-serif;
+    --dark-colour: #212529;
+    --mid-colour: #495057;
+    --light-colour: #ADB5BD;
 }
 * {
+    color: white;
     font-family: var(--mainFont);
     font-weight: 300;
     margin: 0;
@@ -13,6 +17,7 @@ body {
     height: 100%;
     min-height: 100vh;
     margin: 0 auto;
+    background-color: var(--dark-colour);
 }
 body {
     display: flex;
@@ -21,17 +26,44 @@ body {
 }
 main {
     display: grid;
+    gap: 10px;
     max-width: 800px;
     grid-template-columns: 1fr 2fr;
     flex: 1;
 }
 
-.completeButton {
-    border: solid black;
-    height: 15px;
-    width: 15px;
-    border-radius: 10px;
-}
+    .navMenu,
+    .todoContainer {
+        background-color: var(--mid-colour);
+        border-radius: 20px;
+        padding: 20px;
+    }
+
+    /* .todoContainer {
+
+    } */
+        .todoCard {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: 3fr 2fr;
+            gap: 0 10px;
+        }
+            .completeButton {
+                border: solid black;
+                height: 15px;
+                width: 15px;
+                border-radius: 10px;
+                align-self: center;
+                justify-self: center;
+            }
+            h2 {
+                align-self: center;
+            }
+            .dateHolder {
+                grid-column: 2;
+            }
+
+
 .hide {
     display: none;
 }
