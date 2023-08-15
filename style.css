@@ -58,11 +58,38 @@ input:focus {
         padding: 20px;
     }
 
-    .navMenu {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
+    /* .navMenu {   
+    } */
+        .projectsContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+            .projectList {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+                .projectCard {
+                    height: 30px;
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    text-indent: 10px;
+                    cursor: pointer;
+                }
+                .projectCard:hover,
+                .projectCard:active,
+                .activeProject {
+                    background-color: var(--light-colour);
+                    color: var(--dark-colour);
+                }
+            form {
+                display: flex;
+            }
+                .newProjectButton {
+                    border: 0;
+                }
 
     .todoContainer {
         display: flex;
