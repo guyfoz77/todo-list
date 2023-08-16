@@ -16,7 +16,7 @@ const deleteAllCompleteButton = document.querySelector('.deleteComplete');
 
 newProjectButton.addEventListener('click', e => { //will need to rework this to add to storage array rather than directly to DOM
     e.preventDefault();
-    if (projectInput.value == '' || null) return;
+    if (projectInput.value == '') return;
     clearElement(projectList);
     Project.addNewProject(projectInput.value);
     todoListBuilder(activeProjectIndex);
@@ -25,6 +25,7 @@ newProjectButton.addEventListener('click', e => { //will need to rework this to 
 })
 newTodoButton.addEventListener('click', e => {
     e.preventDefault();
+    if (newTodoInput.value == '') return;
     Project.addNewTodo(newTodoInput.value, activeProjectIndex, newTodoDate.value);
     pageLoader();
     newTodoInput.value = '';
