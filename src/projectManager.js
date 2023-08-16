@@ -1,4 +1,4 @@
-import { projects } from "./projectStorage";
+import { projects, populateBrowserStorage } from "./projectStorage";
 
 export class Project {
     constructor(name, projectIndex) {
@@ -16,14 +16,17 @@ export class Project {
             dueDate: dueDate
         }
         projects[projectIndex].todos.push(todo);
+        populateBrowserStorage(projects); //added
     }
 
     static projectDeleter(projectIndex) {
         projects.splice(projectIndex, 1);
+        populateBrowserStorage(projects);
     }
 
     static addNewProject(name, projectIndex) {
         projects.push(new Project(name, projectIndex));
+        populateBrowserStorage(projects);
     }
 
     markTodoCompleteToggle(todoIndex) {
