@@ -1,8 +1,9 @@
 import { Project } from "./projectManager";
 import { pageLoader } from "./pageLoader";
+import { getBrowserStorage } from "./projectStorage";
 
 
-
+// window.localStorage.removeItem('projects');
 if (window.localStorage.projects == null) {
     Project.addNewProject('test project', 0);
     Project.addNewTodo('Test todo', 0);

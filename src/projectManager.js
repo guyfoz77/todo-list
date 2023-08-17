@@ -1,10 +1,10 @@
 import { projects, populateBrowserStorage } from "./projectStorage";
 
 export class Project {
-    constructor(name, projectIndex) {
+    constructor(name, projectIndex, todos = []) {
         this.name = name;
         this.projectIndex = projectIndex;
-        this.todos = [];
+        this.todos = todos;
     }
 
     static addNewTodo(title, projectIndex, dueDate = '') {
@@ -16,7 +16,7 @@ export class Project {
             dueDate: dueDate
         }
         projects[projectIndex].todos.push(todo);
-        populateBrowserStorage(projects); //added
+        populateBrowserStorage(projects);
     }
 
     static projectDeleter(projectIndex) {
@@ -31,14 +31,17 @@ export class Project {
 
     markTodoCompleteToggle(todoIndex) {
         this.todos[todoIndex].completed = !this.todos[todoIndex].completed;
+        populateBrowserStorage(projects);
     }
 
     todoDateEditor(todoIndex, newDate) {
         this.todos[todoIndex].dueDate = newDate;
+        populateBrowserStorage(projects);
     }
 
     todoDeleter(todoIndex) {
         this.todos.splice(todoIndex, 1);
+        populateBrowserStorage(projects);
     }
 }
 
